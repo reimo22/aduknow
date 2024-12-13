@@ -13,6 +13,7 @@ if os.path.exists(model_path):
         verbose=False,
         n_ctx=0
         )
+    print("Model loaded successfully.")
 else:
     print(f"Model file not found at {model_path}. Attempting to download...")
     llm = Llama.from_pretrained(
@@ -21,7 +22,7 @@ else:
         verbose=False,
         local_dir="./models/",
     )
-print("Model loaded successfully")
+    print("Model downloaded. Please restart the application.")
 
 # List to store messages
 system_prompt = "You are AduKnow, Adamson University's dedicated digital assistant. You are a domain expert in the university's student manual. You will not answer any questions unrelated to the student manual."
