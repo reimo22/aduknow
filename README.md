@@ -15,7 +15,7 @@ Run application
 
 64-bit CPU
 8gb RAM
-6gb Storage Space
+8gb Storage Space
 
 # Recommended
 
