@@ -10,3 +10,14 @@ Install dependencies
 
 Run application
 ```python app.py```
+
+# Minimum Requirements
+
+64-bit CPU
+8gb RAM
+6gb Storage Space
+
+# Recommended
+
+dedicated graphics with 4gb vram or more
+
