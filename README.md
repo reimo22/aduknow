@@ -15,7 +15,7 @@ Run application
 
 * 64-bit CPU
 * 8GB RAM
-* At least 8GB Free Disk Space
+* At least 10GB Free Disk Space
 
 # Recommended
 
