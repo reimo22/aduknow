@@ -1,6 +1,6 @@
 # Installation
 
-Install [python](https://www.python.org/downloads/), [cmake](https://cmake.org/download/), [git](https://git-scm.com/downloads/win), and [MSVC Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools) (Scroll to the bottom the of page and download Tools for Visual Studio. Tick **Desktop Development with C++** then install.)
+Install [python](https://www.python.org/downloads/) (Make sure to tick **Add to $PATH** while installing), [cmake](https://cmake.org/download/), [git](https://git-scm.com/downloads/win), and [MSVC Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools) (Scroll to the bottom the of page and download Tools for Visual Studio. Tick **Desktop Development with C++** then install.)
 
 Clone and open directory
 ```git clone https://github.com/reimo22/aduknow.git```
