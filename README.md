@@ -13,11 +13,11 @@ Run application
 
 # Minimum Requirements
 
-64-bit CPU
-8gb RAM
-8gb Storage Space
+* 64-bit CPU
+* 8GB RAM
+* At least 8GB Free Disk Space
 
 # Recommended
 
-dedicated graphics with 4gb vram or more
+* Dedicated graphics card with 4GB VRAM or more.
 
