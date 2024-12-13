@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AduKnow</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #1f2022; /* Gemini black background */
+      color: #dcdcdc; /* Light text color */
+      font-family: sans-serif;
+    }
+    .container {
+      max-width: 700px; /* Adjust container width as needed */
+    }
+    .chatbox {
+      height: 400px;
+      overflow-y: scroll;
+      border: none;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #292b2c; /* Darker chat box background */
+    }
+    .chat-message {
+      margin-bottom: 10px;
+      display: flex; /* Align messages left or right */
+    }
+    .user-message {
+      flex-direction: row-reverse; /* Align user messages to right */
+      margin-right: 20px;
+    }
+    .bot-message {
+      margin-left: 20px;
+    }
+    .message-content {
+      padding: 10px 15px;
+      border-radius: 5px;
+      /* Adjust message background color based on sender */
+      background-color: #393e41; /* User message background */
+    }
+    .user-message .message-content {
+      background-color: #424a52; /* Bot message background */
+    }
+    #userInput {
+      resize: none; /* Disable default resize behavior */
+      min-height: 40px; /* Set minimum input height */
+      max-height: 100px; /* Set maximum input height */
+      overflow-y: scroll; /* Enable scrolling for long messages */
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      background-color: #292b2c; /* Match chatbox background */
+      color: #dcdcdc; /* Light text color */
+    }
+    #sendButton {
+      background-color: #424a52; /* Match bot message background */
+      border-color: #424a52; /* Match bot message background */
+      color: #dcdcdc; /* Light text color */
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center">AduKnow</h2>
+        <div id="chatbox" class="chatbox">
+          </div>
+        <div class="input-group mt-3">
+          <input type="text" id="userInput" class="form-control" placeholder="Type your message here...">
+          <div class="input-group-append">
+            <button id="sendButton" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const chatbox = $('#chatbox');
+      const userInput = $('#userInput');
+      const sendButton = $('#sendButton');
+
+      function appendMessage(sender, message) {
+        const messageElement = $('<div>').addClass('chat-message').addClass(sender === 'user' ? 'user-message' : 'bot-message');
+        const messageContent = $('<div>').addClass('message-content').text(message);
+        messageElement.append(messageContent);
+        chatbox.append(messageElement);
+        chatbox.scrollTop(chatbox[0].scrollHeight);
+      }
+
+      function formatStructuredData(data) {
+        // Convert structured data into a readable string
+        return `Winner: ${data.winner}\nYear: ${data.year}\nEvent: ${data.event}`;
+      }
+
+      function sendMessage() {
+        const message = userInput.val().trim();
+        if (message) {
+          appendMessage('user', message);
+          userInput.val('');
+
+          $.ajax({
+            type: 'POST',
+            url: '/predict',
+            contentType: 'application/json',
+            data: JSON.stringify({ 'prompt': message }),
+            success: function (response) {
+              // Parse the "content" field from the JSON response
+              const botResponse = JSON.parse(response.response).content;
+
+              // Check if the content is an object (structured data)
+              if (typeof botResponse === 'object') {
+                appendMessage('bot', formatStructuredData(botResponse));
+              } else {
+                appendMessage('bot', botResponse);
+              }
+            },
+            error: function (error) {
+              console.error('Error:', error);
+              appendMessage('bot', 'Error: Unable to get response from server.');
+            }
+          });
+        }
+      }
+
+      sendButton.on('click', sendMessage);
+
+      userInput.on('keypress', function (e) {
+        if (e.which === 13) {
+          sendMessage();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
