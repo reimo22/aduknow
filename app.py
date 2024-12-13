@@ -8,7 +8,11 @@ app = Flask(__name__)
 model_path = "models/unsloth.Q4_K_M.gguf"
 
 if os.path.exists(model_path):
-    llm = Llama(model_path=model_path, verbose=False)
+    llm = Llama(
+        model_path=model_path,
+        verbose=False,
+        n_ctx=0
+        )
 else:
     print(f"Model file not found at {model_path}. Attempting to download...")
     llm = Llama.from_pretrained(
