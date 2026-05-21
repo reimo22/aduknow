@@ -41,3 +41,15 @@ The fine-tuned model weights are hosted on Hugging Face:
 
 ### Recommended
 * **GPU**: Dedicated graphics card with 4GB VRAM or more
+
+## Lessons Learned
+
+If I were to build this again today, I would probably use **RAG (Retrieval-Augmented Generation)** and smart prompting instead of fine-tuning. 
+
+Fine-tuning taught me a lot, but it showed me how tough the process can be:
+* **Mixed Results & Hallucinations**: Despite the dataset generation, the model still had mixed results and would occasionally hallucinate or misinterpret specific handbook rules. 
+* **High Effort**: Fine-tuning takes a lot of time, and tweaking hyperparameters to get it right is tedious.
+* **Data is Hard**: Generating and cleaning up high-quality synthetic data is a massive challenge.
+* **Hard to Upgrade**: A fine-tuned model is stuck with what it learned during training. With newer models coming out so fast, it is a pain to re-train the whole thing from scratch every time a better model drops.
+
+With how fast modern models are improving, using a RAG setup would be way easier to maintain. It would lock the AI's answers directly to the actual text of the handbook to stop hallucinations, and let you swap in a newer, better AI model easily without touching any training code.
