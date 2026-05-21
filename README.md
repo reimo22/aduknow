@@ -50,6 +50,6 @@ Fine-tuning taught me a lot, but it showed me how tough the process can be:
 * **Mixed Results & Hallucinations**: Despite the dataset generation, the model still had mixed results and would occasionally hallucinate or misinterpret specific handbook rules. 
 * **High Effort**: Fine-tuning takes a lot of time, and tweaking hyperparameters to get it right is tedious.
 * **Data is Hard**: Generating and cleaning up high-quality synthetic data is a massive challenge.
-* **Hard to Upgrade**: A fine-tuned model is stuck with what it learned during training. With newer models coming out so fast, it is a pain to re-train the whole thing from scratch every time a better model drops.
+* **Hard to Update**: Every time the school updates the student handbook, or a better open-source AI model drops, you have to repeat the entire training lifecycle from scratch.
 
-With how fast modern models are improving, using a RAG setup would be way easier to maintain. It would lock the AI's answers directly to the actual text of the handbook to stop hallucinations, and let you swap in a newer, better AI model easily without touching any training code.
+With how fast modern models are improving, a RAG setup would be way easier to maintain. It grounds the AI's answers directly to the actual text to stop hallucinations, lets you update the handbook guidelines easily, and you can even swap in a newer base model without touching any training code.
