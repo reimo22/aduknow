@@ -1,6 +1,6 @@
 # Aduknow / Adullama3.1
 
-A custom-tuned, locally deployable Language Model designed to act as an intelligent assistant for university student handbooks. 
+A custom-tuned, locally deployable Language Model designed to act as an intelligent assistant for Adamson University student handbook. 
 
 ### Purpose
 This project provides a localized, privacy-focused solution for processing complex institutional regulations. By generating a high-quality synthetic dataset from the Adamson University student handbook, the model was fine-tuned to interpret, retrieve, and explain campus policies, academic guidelines, and student rights through an accessible web interface to answer common questions about the handbook and reduce load on relevant departments.
